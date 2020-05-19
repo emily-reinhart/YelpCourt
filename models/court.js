@@ -8,6 +8,9 @@ var courtSchema = new mongoose.Schema({
 	location: String,
 	lat: Number,
 	lng: Number,
+	city: String,
+	state: String,
+	zip: String,
 	createdAt: { type: Date, default: Date.now },
 	author: {
 		id: {

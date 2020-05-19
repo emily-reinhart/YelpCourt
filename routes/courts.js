@@ -26,29 +26,32 @@ router.get('/', function (req, res) {
 	// fuzzy search
 	if (req.query.search) {
 		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-		Court.find({ name: regex }).skip(perPage * pageNumber - perPage).limit(perPage).exec(function (err, allCourts) {
-			if (err || !allCourts.length) {
-				req.flash('error', 'No matches found.');
-				res.redirect('back');
-			}
-			else {
-				Court.count().exec(function (err, count) {
-					if (err) {
-						console.log(err);
-						res.redirect('back');
-					}
-					else {
-						res.render('courts/index', {
-							courts: allCourts,
-							currentUser: req.user,
-							current: pageNumber,
-							pages: Math.ceil(allCourts.length / perPage),
-							search: req.query.search
-						});
-					}
-				});
-			}
-		});
+		Court.find({ $or: [ { name: regex }, { city: regex }, { state: regex }, { zip: regex } ] })
+			.skip(perPage * pageNumber - perPage)
+			.limit(perPage)
+			.exec(function (err, allCourts) {
+				if (err || !allCourts.length) {
+					req.flash('error', 'No matches found.');
+					res.redirect('back');
+				}
+				else {
+					Court.count().exec(function (err, count) {
+						if (err) {
+							console.log(err);
+							res.redirect('back');
+						}
+						else {
+							res.render('courts/index', {
+								courts: allCourts,
+								currentUser: req.user,
+								current: pageNumber,
+								pages: Math.ceil(allCourts.length / perPage),
+								search: req.query.search
+							});
+						}
+					});
+				}
+			});
 	}
 	else {
 		// get all courts from DB
@@ -105,6 +108,9 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
 		var lat = data[0].latitude;
 		var lng = data[0].longitude;
 		var location = data[0].formattedAddress;
+		var city = data[0].city;
+		var state = data[0].administrativeLevels.level1short;
+		var zip = data[0].zipcode;
 		var newCourt = {
 			name: name,
 			image: image,
@@ -113,8 +119,13 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
 			author: author,
 			location: location,
 			lat: lat,
-			lng: lng
+			lng: lng,
+			city: city,
+			state: state,
+			zip: zip
 		};
+		console.log(newCourt);
+
 		//create new court save to db
 		Court.create(newCourt, function (err, newlyCreated) {
 			if (err) {
