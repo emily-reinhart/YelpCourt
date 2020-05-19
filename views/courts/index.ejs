@@ -5,7 +5,7 @@
             <h1>Welcome to YelpCourt!</h1>
             <p>View Our Favorite Tennis Courts</p>
             <p>
-                <a class="btn btn-info btn-md" href="/courts/new">Add New Court</a>
+                <a class="btn btn-success btn-md" href="/courts/new">Add New Court</a>
             </p>
         </div>
     </header>
@@ -14,12 +14,14 @@
         <% courts.forEach(function(court){ %>
             <div class="col-md-3 col-sm-4 col-xs-6">
                 <div class="thumbnail">
-                    <img id="gridImage" src="<%= court.image %>">
+                    <a href="/courts/<%= court._id %>">
+                        <img id="gridImage" src="<%= court.image %>">
+                    </a>
                     <div class="caption">
                         <h4> <%= court.name %> </h4>
                     </div>
                     <p>
-                        <a class="btn btn-info" href="/courts/<%= court._id %>">More Info</a>
+                        <a class="btn btn-success" href="/courts/<%= court._id %>">More Info</a>
                     </p>
                 </div>
             </div>

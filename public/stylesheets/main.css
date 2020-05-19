@@ -1,35 +1,8 @@
 body {
-	background-color: #def0ff;
+	background-color: #cbecce;
 }
 .navbar {
-	background-color: lightblue;
-	border: none;
-}
-.navbar-inverse .navbar-nav li a {
-	color: rgb(112, 112, 112);
-}
-.navbar-inverse .navbar-header a {
-	color: rgb(112, 112, 112);
-}
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus {
-	color: #fff;
-	background-color: transparent;
-}
-.navbar-inverse .navbar-toggle:hover {
-	background-color: rgb(112, 112, 112);
-}
-.navbar-inverse .navbar-toggle {
-	border-color: rgb(112, 112, 112);
-}
-.navbar-inverse .navbar-toggle:focus,
-.navbar-inverse .navbar-toggle:hover {
-	background-color: rgb(112, 112, 112);
-}
-.navbar-inverse .navbar-collapse,
-.navbar-inverse .navbar-form {
-	border-color: rgb(112, 112, 112);
+	border-radius: 0%;
 }
 
 .pagination > .active > a,
@@ -38,18 +11,18 @@ body {
 .pagination > .active > span,
 .pagination > .active > span:focus,
 .pagination > .active > span:hover {
-	background-color: #5bc0de;
-	border-color: #5bc0de;
+	background-color: #5cb85c;
+	border-color: #5cb85c;
 }
 .pagination > li > a,
 .pagination > li > span {
-	color: #5bc0de;
+	color: #5cb85c;
 }
 .list-group-item.active,
 .list-group-item.active:focus,
 .list-group-item.active:hover {
-	background-color: #5bc0de;
-	border-color: #5bc0de;
+	background-color: #5cb85c;
+	border-color: #5cb85c;
 }
 
 .thumbnail {
@@ -96,7 +69,6 @@ body {
 }
 .jumbotron {
 	background-color: white;
-	color: rgb(112, 112, 112);
 }
 .jumbotron h1 {
 	font-size: 3.5em;
