@@ -165,6 +165,6 @@
           });
         }
       </script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUO8G7P-3nUIxOvC0rLX_ltOMQeZRydjQ&callback=initMap"></script>
+      <script async defer src="<%= process.env.MAPS_API_URL %>"></script>
 
 <%- include ("../partials/footer") %>
